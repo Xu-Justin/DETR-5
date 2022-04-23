@@ -15,3 +15,6 @@ experiment-*
 .mypy_cache/*
 not_tracked_dir/
 .vscode
+my_dataset/train*
+my_dataset/val*
+my_dataset/test*

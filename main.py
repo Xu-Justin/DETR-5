@@ -122,7 +122,7 @@ def main(args):
     random.seed(seed)
 
     model, criterion, postprocessors = build_model(args)
-    assert(model.class_embed.out_features == args.num_classes+1)
+    assert model.class_embed.out_features == args.num_classes+1, f"get: {model.class_embed.out_features} expected: {args.num_classes+1}"
     
     model.to(device)
 
@@ -180,7 +180,7 @@ def main(args):
                 args.resume, map_location='cpu', check_hash=True)
         else:
             checkpoint = torch.load(args.resume, map_location='cpu')
-        model_without_ddp.load_state_dict(checkpoint['model'])
+        model_without_ddp.load_state_dict(checkpoint['model'], strict=False)
         if not args.eval and 'optimizer' in checkpoint and 'lr_scheduler' in checkpoint and 'epoch' in checkpoint:
             optimizer.load_state_dict(checkpoint['optimizer'])
             lr_scheduler.load_state_dict(checkpoint['lr_scheduler'])

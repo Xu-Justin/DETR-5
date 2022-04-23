@@ -1,0 +1,8 @@
+python3 main.py \
+	--epochs 2 \
+	--num_classes 5 \
+	--coco_path my_dataset \
+	--backbone resnet101 \
+	--lr_backbone 0 \
+	--resume weight/detr-r101-no-class-embed.pth \
+	--output_dir weight
