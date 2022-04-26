@@ -1,8 +1,16 @@
 python3 main.py \
-	--epochs 2 \
-	--num_classes 5 \
+	--epochs 50 \
+	--batch_size 2 \
+	--num_classes 6 \
 	--coco_path my_dataset \
 	--backbone resnet101 \
-	--lr_backbone 0 \
-	--resume weight/detr-r101-no-class-embed.pth \
+	--resume weight/checkpoint.pth \
 	--output_dir weight
+
+python3 main.py \
+	--epochs 100 \
+	--batch_size 1 \
+	--num_classes 6 \
+	--coco_path my_dataset \
+	--backbone resnet101 \
+	--resume weight/checkpoint.pth

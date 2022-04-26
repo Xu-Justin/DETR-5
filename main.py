@@ -180,7 +180,18 @@ def main(args):
                 args.resume, map_location='cpu', check_hash=True)
         else:
             checkpoint = torch.load(args.resume, map_location='cpu')
+            
+        # checkpoint['model']['class_embed.weight'] = torch.cat((checkpoint['model']['class_embed.weight'], torch.rand(1, 256)), 0)
+        # checkpoint['model']['class_embed.weight'][5], checkpoint['model']['class_embed.weight'][6] = checkpoint['model']['class_embed.weight'][6].clone(), checkpoint['model']['class_embed.weight'][5].clone()
+        
+        # checkpoint['model']['class_embed.bias'] = torch.cat((checkpoint['model']['class_embed.bias'], torch.rand(1)), 0)
+        # checkpoint['model']['class_embed.bias'][5], checkpoint['model']['class_embed.bias'][6] = checkpoint['model']['class_embed.bias'][6].clone(), checkpoint['model']['class_embed.bias'][5].clone()
+            
         model_without_ddp.load_state_dict(checkpoint['model'], strict=False)
+        
+        # torch.save(model_without_ddp, 'DETR.model')
+        # exit()
+        
         if not args.eval and 'optimizer' in checkpoint and 'lr_scheduler' in checkpoint and 'epoch' in checkpoint:
             optimizer.load_state_dict(checkpoint['optimizer'])
             lr_scheduler.load_state_dict(checkpoint['lr_scheduler'])
