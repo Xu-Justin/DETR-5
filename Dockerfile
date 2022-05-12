@@ -1,4 +1,4 @@
-FROM pytorch/pytorch:1.5-cuda10.1-cudnn7-runtime
+FROM pytorch/pytorch
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -11,3 +11,5 @@ RUN pip --no-cache-dir install Cython
 COPY requirements.txt /workspace
 
 RUN pip --no-cache-dir install -r /workspace/requirements.txt
+
+RUN pip install torchvision==0.7.0
