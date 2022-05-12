@@ -1,6 +1,6 @@
 python3 main.py \
 	--epochs 50 \
-	--batch_size 2 \
+	--batch_size 1 \
 	--num_classes 6 \
 	--coco_path my_dataset \
 	--backbone resnet101 \
